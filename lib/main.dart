@@ -42,12 +42,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: ' Effvision Task',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Effvision Task'),
     );
   }
 }
@@ -97,12 +97,24 @@ class _MyHomePageState extends State<MyHomePage> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: Text(notification.title),
+                title: Text(
+                  notification.title,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
+                ),
                 content: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(notification.body),
+                      Text(
+                        notification.body,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.lightBlue),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -122,8 +134,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     flutterLocalNotificationsPlugin.show(
         0,
-        "Testing $_counter",
-        "How you doin ?",
+        "The Counter is : $_counter",
+        "",
         NotificationDetails(
             android: AndroidNotificationDetails(
                 channel.id, channel.name, channel.description,
@@ -143,20 +155,31 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            GestureDetector(
+              onTap: showNotification,
+              child: Container(
+                width: 200,
+                height: 70,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    border: Border.all(
+                      color: Colors.blue,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Center(
+                  child: Text(
+                    "Get Notification",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: showNotification,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
